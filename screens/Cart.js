@@ -35,11 +35,9 @@ const Cart = (props) =>{
                             <Text style={{color:'#fff'}}>{game.gameName}</Text>
                             <Text style={{color:'#fff'}}>{game.price}</Text>
                             <Button title="DELETE" buttonStyle={styles.addtocart} onPress={() => props.deleteFromShop(game)}/>
-
                         </View>
                     )
-                    
-                    
+
                 })}
                 <Text style={{color:'#fff'}}>Total:</Text>
                 <Text style={{color:'#fff'}}>{total}</Text>
