@@ -35,7 +35,7 @@ const MyCarousel = () => {
 
     const places = ({ item }) => {
         return (
-            <View style={styles.carouselContainer}>              
+            <View style={styles.carouselContainer}>   
             <View key={item.id} style={styles.slide}>
             <Image
                 source={{ uri: item.url }}
@@ -48,6 +48,7 @@ const MyCarousel = () => {
 
     return (
         <View style={styles.containerCarousel}>
+        <Image source={require('../assets/trending.png')} style={styles.imageTrending}/>     
         <Carousel
             data={games}
             sliderWidth={350}
@@ -62,7 +63,7 @@ const MyCarousel = () => {
 
 const styles = StyleSheet.create({
     carouselContainer:{
-        height:500,
+        height:550,
         alignItems:"center",
         // backgroundColor:"#fff",
     },
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         height: 500,
-        width: "90%",
+        width: "85%",
     },
     containerCarousel: {
         marginBottom: 20,
@@ -83,6 +84,14 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
+    imageTrending:{
+        marginVertical:50,
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
+        height: 70,
+        width: "80%",
+    }
 
 });
 

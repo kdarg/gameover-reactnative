@@ -4,17 +4,31 @@ import { StyleSheet, Text, View, ImageBackground, ScrollView } from 'react-nativ
 import ComingSoon from '../components/ComingSoon';
 import OnSale from '../components/OnSale';
 import Footer from '../components/Footer';
+import CalltoActions from '../components/CalltoActions';
 
 ComingSoon
 const Home = () =>{
+
+    const image = { uri: "https://user-images.githubusercontent.com/91817152/163213332-abb446f0-0a2a-4484-b57c-a188df1d6c55.jpg" };
+
     return(
-        <ScrollView style={{backgroundColor:'#1f1f24'}}>    
+        <ScrollView style={{backgroundColor:'#1f1f24'}}> 
+        <ImageBackground  source={image} style={styles.popular}>
+            <CalltoActions/>
             <MyCarousel/>
-            <ComingSoon/>
             <OnSale/>
+            <ComingSoon/>
             <Footer/>
+            </ImageBackground> 
         </ScrollView>
     )
 }
 
+const styles = StyleSheet.create({
+    popular:{
+        width:"100%",
+        height:"100%",
+    }
+
+})
 export default Home;

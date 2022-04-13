@@ -1,4 +1,6 @@
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import {ToastAndroid} from 'react-native'
 
 const userActions = {
 
@@ -27,10 +29,11 @@ const userActions = {
     signOutUser: (closeuser) => {
 
         return async (dispatch, getState) => {
-            localStorage.removeItem('token')
+            AsyncStorage.removeItem('token')
 
             dispatch({ type: 'user', payload: null});
-
+            
+            ToastAndroid.showWithGravityAndOffset('Goodbye! ', ToastAndroid.LONG, ToastAndroid.CENTER, 25,50)
         }
     },
 
@@ -50,9 +53,9 @@ const userActions = {
 		return user.data.response
 
             } else {
-                localStorage.removeItem('token')
+                AsyncStorage.removeItem('token')
 
-		return false
+		        return false
             }
 
         }

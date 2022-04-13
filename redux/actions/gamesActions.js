@@ -4,19 +4,29 @@ const gamesActions = {
     
     fetchGames: () =>{
         return async(dispatch, getState) => {
+            
+            const res = await axios.get('https://game-over-shop.herokuapp.com/api/games')
+            
+            dispatch({type:'fetchGames', payload:res.data.response})
+    }
+},
 
-		const res = await axios.get('https://game-over-shop.herokuapp.com/api/games')
+    fetchGame: (id) =>{
+    return async(dispatch, getState) => {
 
-		dispatch({type:'fetchGames', payload:res.data.res})
+    const res = await axios.get(`https://game-over-shop.herokuapp.com/api/games/${id}`)
 
-        }
-    },
+    dispatch({type:'fetchOne', payload:res.data.response})
+
+    }
+},
+
 
     deleteGame: (id)=>{
         return async(dispatch, getState) => {
             try {
             
-                const res = await axios.delete('https://game-over-shop.herokuapp.com/api/games', {id})
+                const res = await axios.delete(`https://game-over-shop.herokuapp.com/api/games/${id}`)
 
             } catch(err){
                 console.log(err)
@@ -24,10 +34,9 @@ const gamesActions = {
         }
     },
 
-    filterGames: (games, value)=>{
+    filterGames: (games, value, genre)=>{
         return async(dispatch,getState)=>{
-
-		dispatch({type:'filterGames', payload:{games, value}})
+		dispatch({type:'filterGames', payload:{games, value, genre}})
 
         }
     },
@@ -40,15 +49,17 @@ const gamesActions = {
         }
     },
 
-    modifyGame: (game) => {
-	return async(dispatch, getState) => {
-
-		const res = await axios.put('https://game-over-shop.herokuapp.com/api/games', {game})
-
+    addToShop: (game) => {
+	    return async(dispatch, getState) => {
+		    dispatch({type:'addToShop', payload:{game}})
 	    }
-    }
+    },
 
-
+    deleteFromShop: (game) => {
+	    return async(dispatch, getState) => {
+		    dispatch({type:'deleteFromShop', payload:{game}})
+	    }
+    },
 }
 
 export default gamesActions;
