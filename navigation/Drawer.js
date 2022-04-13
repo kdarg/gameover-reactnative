@@ -17,10 +17,73 @@ function Logo() {
     <Image style={{ width: 50, height: 50, marginRight: 13,resizeMode:'contain'}} source={require('../assets/newlogo.png')}/>
     )
 }
+const [firstname, setFirstName] = useState(undefined)
+
+useEffect(() => {
+        setFirstName(props.user?.firstname)
+        refreshUserToken()
+    
+}, [props.user])
+
+const [token, setToken] = useState(undefined)
+
+useEffect(()=> {
+    const asyncStore = async () => {
+        let insideStorage = await AsyncStorage.getItem("token")
+        if (insideStorage){
+            const tokenFromStorage = await AsyncStorage.getItem("token")
+            setToken(tokenFromStorage)
+            console.log(tokenFromStorage)
+        return await props.verifyToken(tokenFromStorage)
+
+        }
+    }
+    asyncStore()
+}, [])
+
+const refreshUserToken = async () => {
+    
+    const tokenFromStorage = await AsyncStorage.getItem("token")
+    setToken(tokenFromStorage)
+    console.log(tokenFromStorage)
+
+
+}
+
+const CustomDrawerContent = (props) => {
+
+        return(
+
+            <DrawerContentScrollView {...props}>
+
+                    <View style={styles.containerUserFoto}>
+                     {props.token
+                      ? <Text style={styles.nameUser}>{props.firstname}</Text>
+                      : <Text style={styles.nameUser}></Text>}
+                    </View>
+                    <DrawerItemList {...props}  /> 
+                    {props.token && <DrawerItem label="Log Out" 
+                        onPress={() => { 
+                            // console.log(usersActions.LogOutUser)
+                            AsyncStorage.removeItem('token')
+                            ToastAndroid.showWithGravityAndOffset('Goodbye!', ToastAndroid.LONG, ToastAndroid.CENTER, 25,50)
+                            props.refreshUserToken()
+                            props.navigation.navigate('Home') 
+                        }} 
+                        activeBackgroundColor='#3fced341' activeTintColor='#2ab6bb'/>}
+
+
+            </DrawerContentScrollView>
+        )
+
+        
+
+    
+}
 
 return (
 
-    <Drawer.Navigator  >
+    <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} token={token} firstname={firstname} refreshUserToken={refreshUserToken} />} >
 
         <Drawer.Screen name="Home" component={StackHome} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } } />
 
@@ -38,6 +101,25 @@ return (
 );
 } 
 
+const styles = StyleSheet.create({
+    nameUser: {
+        color: 'black',
+        textAlign: 'center',
+        fontSize: 20
+    },
+    containerUserFoto: {
+        alignItems: 'center'
+    },
+    drawerCustom:{
+        flex:1,
+        marginTop:15,
+    },
+    userProfile:{
+        minWidth: 55,
+        height: 57,
+        borderRadius: 50
+    }
+})
 
 const mapStateToProps = (state) => {
     return{
@@ -46,7 +128,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    // VerifyToken: usersActions.VerifyToken,
+    verifyToken: usersActions.verifyToken,
     signOutUser: usersActions.signOutUser
 }
 

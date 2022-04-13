@@ -8,7 +8,7 @@ const userActions = {
 
         return async (dispatch, getState) => {
             const res = await axios.post('https://game-over-shop.herokuapp.com/api/auth/signUp', { userData })
-
+            return res
         }
     },
 
@@ -16,11 +16,13 @@ const userActions = {
 
         return async (dispatch, getState) => {
             const user = await axios.post('https://game-over-shop.herokuapp.com/api/auth/logIn', { userData })
-
+            console.log(user)
             if (user.data.success) {
-                localStorage.setItem('token', user.data.response.token)
+                AsyncStorage.setItem('token', user.data.response.token)
 
                 dispatch({ type: 'user', payload: user.data.response.userData });
+
+                return user
             }
 
         }

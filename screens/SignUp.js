@@ -12,7 +12,7 @@ const SignUp = (props) =>{
 
     const countries = ["Argentina", "Canada", "Colombia","Croatia", "Finland", "France", "Germany", "Iceland", "Italy","Japan", "Norway", "Poland", "Russia", "Slovensko", "Switzerland", "Uruguay", "USA"]
 
-    const [userData, setUserData] = useState({ firstname: '', lastname: '',  country: '', urlimage: '', email: '', password: '',  })
+    const [userData, setUserData] = useState({ firstname: '', lastname: '',  country: '', urlimage: 'gameover', email: '', password: '',  })
 
     const signUpForm = async () => {
         if (userData.firstname === '' || userData.lastname ==='' || userData.email === '' || userData.password === '', userData.urlimage === '', userData.country === '') {
@@ -59,7 +59,7 @@ const SignUp = (props) =>{
             }}
             dropdownIconPosition={"right"} onSelect={(selectedItem) => setUserData({...userData, country:selectedItem})} buttonTextAfterSelection={(selectedItem, index) => {return selectedItem}} rowTextForSelection={(item, index) => {return item}} onValueChange={(e) => userHandler(e, "country")}/>
             
-        <TextInput style={styles.inputs} placeholder="URL image" onChange={(e) => setUserData({...userData, urlimage:e.nativeEvent.text})}/>
+        {/* <TextInput style={styles.inputs} placeholder="URL image" onChange={(e) => setUserData({...userData, urlimage:e.nativeEvent.text})}/> */}
 
         <TextInput style={styles.inputs} placeholder="Email" onChange={(e) => setUserData({...userData, email:e.nativeEvent.text})}/>
 

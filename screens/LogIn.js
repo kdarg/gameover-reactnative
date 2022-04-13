@@ -23,6 +23,7 @@ const LogIn = (props) =>{
                     ToastAndroid.showWithGravityAndOffset('Email and password dont match', ToastAndroid.SHORT, ToastAndroid.CENTER, 25,50)
                 }else{
                     ToastAndroid.showWithGravityAndOffset('"Hey, welcome!', ToastAndroid.SHORT, ToastAndroid.CENTER, 25,50)
+                    props.navigation.navigate('Home')
                 }
             }catch (error){
                 console.log(error)
