@@ -5,7 +5,7 @@ const gamesActions = {
     fetchGames: () =>{
         return async(dispatch, getState) => {
 
-		const res = await axios.get('http://localhost:4000/api/games')
+		const res = await axios.get('https://game-over-shop.herokuapp.com/api/games')
 
 		dispatch({type:'fetchGames', payload:res.data.res})
 
@@ -16,7 +16,7 @@ const gamesActions = {
         return async(dispatch, getState) => {
             try {
             
-                const res = await axios.delete('http://localhost:4000/api/games', {id})
+                const res = await axios.delete('https://game-over-shop.herokuapp.com/api/games', {id})
 
             } catch(err){
                 console.log(err)
@@ -35,7 +35,7 @@ const gamesActions = {
     setGame: (gameName, genre, src, size, workson, company, description, requirements, price, images)=>{
         return async(dispatch, getState)=>{
 
-		const res = await axios.post('http://localhost:4000/api/games',{gameName, genre, src, size, workson, company, description, requirements, price, images})
+		const res = await axios.post('https://game-over-shop.herokuapp.com/api/games',{gameName, genre, src, size, workson, company, description, requirements, price, images})
 
         }
     },
@@ -43,7 +43,7 @@ const gamesActions = {
     modifyGame: (game) => {
 	return async(dispatch, getState) => {
 
-		const res = await axios.put('http://localhost:4000/api/games', {game})
+		const res = await axios.put('https://game-over-shop.herokuapp.com/api/games', {game})
 
 	    }
     }

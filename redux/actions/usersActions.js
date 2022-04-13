@@ -5,7 +5,7 @@ const userActions = {
     signUpUser: (userData) => {
 
         return async (dispatch, getState) => {
-            const res = await axios.post('http://localhost:4000/api/auth/signUp', { userData })
+            const res = await axios.post('https://game-over-shop.herokuapp.com/api/auth/signUp', { userData })
 
         }
     },
@@ -13,7 +13,7 @@ const userActions = {
     signInUser: (userData) => {
 
         return async (dispatch, getState) => {
-            const user = await axios.post('http://localhost:4000/api/auth/logIn', { userData })
+            const user = await axios.post('https://game-over-shop.herokuapp.com/api/auth/logIn', { userData })
 
             if (user.data.success) {
                 localStorage.setItem('token', user.data.response.token)
@@ -38,7 +38,7 @@ const userActions = {
 
         return async (dispatch, getState) => {
 
-            const user = await axios.get('http://localhost:4000/api/auth/signInToken', {
+            const user = await axios.get('https://game-over-shop.herokuapp.com/api/auth/signInToken', {
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
