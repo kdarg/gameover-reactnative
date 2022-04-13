@@ -1,7 +1,7 @@
 
 import React, {useState, useEffect } from "react";
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList  } from '@react-navigation/drawer';
-import { StackHome, StackGames, StackSignUp,StackLogIn,StackAboutUs } from './Stack';
+import { StackHome, StackGames, StackSignUp,StackLogIn,StackAboutUs, StackCart} from './Stack';
 import { connect } from 'react-redux';
 import { Image } from 'react-native'
 import {StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, ToastAndroid} from "react-native";
@@ -64,7 +64,6 @@ const CustomDrawerContent = (props) => {
                     <DrawerItemList {...props}  /> 
                     {props.token && <DrawerItem label="Log Out" 
                         onPress={() => { 
-                            // console.log(usersActions.LogOutUser)
                             AsyncStorage.removeItem('token')
                             ToastAndroid.showWithGravityAndOffset('Goodbye!', ToastAndroid.LONG, ToastAndroid.CENTER, 25,50)
                             props.refreshUserToken()
@@ -76,9 +75,6 @@ const CustomDrawerContent = (props) => {
             </DrawerContentScrollView>
         )
 
-        
-
-    
 }
 
 return (
@@ -89,6 +85,9 @@ return (
 
         <Drawer.Screen name="Games" component={StackGames} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></>}}/>
         <Drawer.Screen name="About us" component={StackAboutUs} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
+
+        <Drawer.Screen name="Cart" component={StackCart} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
+
         <Drawer.Screen name="Log in" component={StackLogIn} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
         <Drawer.Screen name="Sign up" component={StackSignUp} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
 

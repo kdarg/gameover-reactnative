@@ -6,6 +6,7 @@ import GamesDetails from '../screens/GamesDetails'
 import LogIn from '../screens/LogIn'
 import AboutUs from '../screens/AboutUs'
 import SignUp from '../screens/SignUp'
+import Cart from '../screens/Cart'
 
 const Stack = createNativeStackNavigator()
 
@@ -45,6 +46,14 @@ export const StackLogIn = () => {
     return( 
         <Stack.Navigator screenOptions={{headerShown:false}}>
             <Stack.Screen name='stackLogIn' component={LogIn}/>
+        </Stack.Navigator>
+    )
+}
+
+export const StackCart = () => {
+    return( 
+        <Stack.Navigator screenOptions={{headerShown:false}}>
+            <Stack.Screen name='stackCart' component={Cart}/>
         </Stack.Navigator>
     )
 }

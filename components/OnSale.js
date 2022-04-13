@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Button } from 'react-native-elements'
 
 const OnSale = (props) => {
-    
+    console.log(props)
     // const [games, setGames] = useState([])
     const gameList = ['Monster Hunter: World', 'Hades', 'Mario Party Superstars', 'Mortal Kombat 11']
 
@@ -40,16 +40,16 @@ const OnSale = (props) => {
                     return(
                         <View style={styles.eachcontainer} key={game._id}>
 
-                            <Image source={{uri:`https://game-over-shop.herokuapp.com/assets/gamesImages/${game.src}`}} style={styles.gameimage}/>
+                        <Image source={{uri:`https://game-over-shop.herokuapp.com/assets/gamesImages/${game.src}`}} style={styles.gameimage}/>
 
                         <Text style={styles.gamenamestyle}>{game.gameName}</Text>
                         <View style={styles.boxprice}>
                         <Text style={styles.discstyles}> $ XX USD</Text>
                             <Text style={styles.pricestyles}> $ {game.price} USD</Text>
-                        <Button title="ADD TO CART" buttonStyle={styles.addtocart} onPress={() => props.navigation.navigate('GamesDetails')}/>
+                        <Button title="ADD TO CART" buttonStyle={styles.addtocart} onPress={() => props.addToShop(game)}/>
                         </View>
 
-                    </View>
+                        </View>
                     )
                     }}
                     )}
@@ -159,6 +159,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = {
     fetchGames: gamesActions.fetchGames,
+    addToShop: gamesActions.addToShop
 
 }
 
