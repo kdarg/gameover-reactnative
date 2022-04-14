@@ -26,13 +26,14 @@ const gamesReducer = (state = initialState, action) => {
             
         case 'filterGames':
 
-	    console.log(action.payload)
+	    // console.log(action.payload)
 
             let filtered = action.payload.games.games.filter((data => data.gameName.toLowerCase().startsWith(action.payload.value.toLowerCase().trim())))
 
-	    if(action.payload.genre !== '' && action.payload.genre !== 'All'){
-		    filtered = filtered.filter((data) => data.genre.includes(action.payload.genre))
-	    }
+
+	    // if(action.payload.genre !== '' && action.payload.genre !== 'All'){
+		//     filtered = filtered.filter((data) => data.genre.includes(action.payload.genre))
+	    // }
 
             return {
                 ...state,
