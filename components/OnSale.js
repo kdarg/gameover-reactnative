@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         // justifyContent: "center",
         height: 70,
-        marginBottom: 30,
     },
     pricestyles:{
         fontSize: 40,
@@ -124,6 +123,7 @@ const styles = StyleSheet.create({
         
     },
     mapContainer: {
+	marginTop:70,
         justifyContent: "center",
         alignItems: "center",
 
