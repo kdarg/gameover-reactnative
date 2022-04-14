@@ -9,7 +9,12 @@ import { Button } from 'react-native-elements'
 const OnSale = (props) => {
     // console.log(props)
     // const [games, setGames] = useState([])
-    const gameList = ['Monster Hunter: World', 'Hades', 'Mario Party Superstars', 'Mortal Kombat 11']
+    const gameList = [
+    {name:'Monster Hunter: World', disc:'60%', oldprice: '33.00'}, 
+    {name:'Hades', disc:'10%', oldprice:'25.00'},
+    {name: 'Mario Party Superstars', disc: '50%', oldprice:'60.00' },
+    {name: 'Mortal Kombat 11', disc:'90%', oldprice:'49.99'}
+    ]
 
     useEffect(() => {
         async function fetchGames() {
@@ -36,7 +41,7 @@ const OnSale = (props) => {
         <View style={styles.boxCity}>
                 
                 {props.games?.map((game) => {
-                    if(gameList.includes(game.gameName)) {
+                    if(gameList.map(element => element.name).includes(game.gameName)) {
                     return(
                         <View style={styles.eachcontainer} key={game._id}>
 
@@ -44,7 +49,8 @@ const OnSale = (props) => {
 
                         <Text style={styles.gamenamestyle}>{game.gameName}</Text>
                         <View style={styles.boxprice}>
-                        <Text style={styles.discstyles}> $ XX USD</Text>
+                            <Text  style={styles.pricestyles}>  {gameList.find(x => x.name === game.gameName).disc} </Text>
+                        <Text style={styles.discstyles}> $ {gameList.find(x => x.name === game.gameName).oldprice} USD</Text>
                             <Text style={styles.pricestyles}> $ {game.price} USD</Text>
                         <Button title="ADD TO CART" buttonStyle={styles.addtocart} onPress={() => props.addToShop(game)}/>
                         </View>
@@ -132,7 +138,7 @@ const styles = StyleSheet.create({
     boxCity: {
         width: "90%",
         borderRadius: 15,
-        height: 3000,
+        height: 2300,
         marginVertical: "3%",
         // backgroundColor: "white",
 
@@ -147,7 +153,7 @@ const styles = StyleSheet.create({
     },
     boxprice:{
         backgroundColor:'#DB35D5',
-        height:200,
+        height:250,
     }
 });
 
