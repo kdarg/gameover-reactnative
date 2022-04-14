@@ -45,7 +45,7 @@ const OnSale = (props) => {
                     return(
                         <View style={styles.eachcontainer} key={game._id}>
 
-                        <Image source={{uri:`https://game-over-shop.herokuapp.com/assets/gamesImages/${game.src}`}} style={styles.gameimage}/>
+                        <Image source={{uri:`https://game-over-shop.herokuapp.com/assets/gamesImages/${game.src}`}} style={styles.gameimage} />
 
                         <Text style={styles.gamenamestyle}>{game.gameName}</Text>
                         <View style={styles.boxprice}>
