@@ -33,10 +33,14 @@ const Games = (props) =>{
         }
     },[props.games])
 
+    const image = { uri: "https://user-images.githubusercontent.com/75273639/163312873-998df823-a22d-4d94-a9b9-a325a10c620c.jpg" }
 
     return(
-        <ScrollView style={{backgroundColor:'#1f1f24'}}>
-            {/* <TopThree/> */}
+        <ScrollView  style={{backgroundColor:'#1f1f24'}}>
+            <ImageBackground  source={image} style={styles.popular}>
+            <View style={styles.calltoactions}>
+            <Image  style={styles.hero} source={require('../assets/top.png')} resizeMode="contain"/>
+            </View>
             <View style={styles.containergames}>
             <TouchableWithoutFeedback >
             <View style={styles.boxSearch}>
@@ -44,30 +48,38 @@ const Games = (props) =>{
             </View>
             </TouchableWithoutFeedback>
             </View>
-            <ScrollView style={styles.citiesContainer}>
+            <ScrollView style={styles.allGamesContainer}>
             <View style={styles.mapContainer}>
                 {(props.games.length !== 0) ? props.games.map ((game, index) => {
                 return (
-                    <View style={styles.boxCity} key={index}>
+                    <View style={styles.boxGame} key={index}>
                     {/* <TouchableOpacity onPress={() => {
                                 props.navigation.navigate('city', {
                                     id: game._id
                                 })
                             }}> */}
-
-                            
-                        <View style={styles.boxCities}>
-                            <Image source={{uri:`https://game-over-shop.herokuapp.com/assets/gamesImages/${game.src}`}} style={styles.image}/>
-                            <Text style={styles.place}>{game.gameName} </Text>
-
-                            <Button title="ADD TO CART" buttonStyle={styles.addtocart} onPress={() => props.addToShop(game)}/>
+                        
+                        <Image source={{uri:`https://game-over-shop.herokuapp.com/assets/gamesImages/${game.src}`}} style={styles.image}/>
+                            <View style={styles.genreContainer}>
+                            {game.genre.map((genre, index) => <Text style={styles.eachgenre} key={index}>{genre}</Text>)}
+                            </View>
+                        <Text style={styles.place}>{game.gameName} </Text>
+                        <View style={styles.priceContainer}>
+                        <Text style={styles.pricetag}>$ {game.price} USD</Text>
                         </View>
+                        <View style={styles.xxx}>
+                        <Button title="ADD TO CART" buttonStyle={styles.addtocart} onPress={() => props.addToShop(game)}/>
+                        </View>
+                        
                     {/* </TouchableOpacity> */}
                     </View>
                 )
             }): <View style={styles.noResultsContainer}>
-                    <Text style={styles.noResults}>- No results to show -</Text>
-                    <Text style={styles.noResults}>Please try again.</Text>
+
+                    <Image source={require("../assets/aboutImages/search.png")} style={styles.imageone}/>
+                
+                    <Text style={styles.noResults}>GAME NOT FOUND!</Text>
+                    <Text style={styles.noResults}>PLEASE TRY WITH ANOTHER ONE</Text>
                     {/* <Image style={styles.imageNoResult} source={require('../assets/noresult.png')}></Image> */}
                 </View>
             }
@@ -77,47 +89,101 @@ const Games = (props) =>{
 
 
             <Footer/>
+            </ImageBackground>
         </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
+    hero:{
+        width:"100%",
+        height:200,
+        alignItems:"center",
+        // marginHorizontal:30,
+        // marginVertical:30,
+        // marginTop:72,
+    },
+    calltoactions:{
+        
+        alignItems:"center",
+        marginHorizontal:10,
+        // marginVertical:10,
+    },
+    popular:{
+        width:"100%",
+        height:"100%",
+    },
+    imageone:{
+        width: 52,
+        height: 52,
+        // marginTop:15,  
+    },
+    priceContainer:{
+        marginTop:10,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        marginBottom: 30,
+    },
+    pricetag:{
+        fontSize:20,
+        color:'#fff',
+    },
+    genreContainer:{
+        marginTop:10,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+    eachgenre:{
+        paddingLeft: 5,
+        color: '#fff',
+        fontSize: 15,
+    },  
+    xxx:{
+        display:'flex',
+        justifyContent:'center',
+        alignContent:'center',
+        alignItems:'center',
+    },
+
     addtocart:{
-        padding: 10,
+        width:150,
+
     },
     containergames:{
         marginTop:20,
     },
     search: {
         fontSize: 14,
-        padding: "2.5%",
         color: "black",
-        marginTop: 50,
+        marginTop: 10,
         
     },
     boxSearch: {
         borderColor: "#9e9ba0",
         borderWidth: 2,
         width: "60%",
-        marginBottom: "2%",
         borderRadius: 50,
+        marginBottom: 30,
         alignSelf: "center",
         flexDirection: "row",
         justifyContent: "center",
         backgroundColor: "white",
-        marginTop: "5%",
+        // marginTop: "5%",
     },
-
     image:{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         height: 250,
         width: "100%",
-        // marginTop: 25,
-        borderRadius: 50,
+        borderTopLeftRadius: 50,
+        borderTopRightRadius: 50,
     },
-    citiesContainer:{
+    allGamesContainer:{
         width: "100%",
         height: "100%",
     },
@@ -127,19 +193,10 @@ const styles = StyleSheet.create({
         textShadowColor:"rgb(112, 3, 45)",
         textShadowOffset:{width: 1.5, height: 0.5},
         textShadowRadius: 5,
-        fontFamily:"CroissantOne_400Regular",
         fontSize:20,
         width: "100%",
         marginBottom: 20,
-        // marginTop: 25,
         textAlign:"center"
-    },
-    popular:{
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-        marginBottom: 30,
-        // marginTop: 20,
     },
     mainContainer: {
         flex: 1,
@@ -149,7 +206,6 @@ const styles = StyleSheet.create({
     mapContainer: {
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor:'red',
     },
     search: {
         fontSize: 14,
@@ -157,28 +213,19 @@ const styles = StyleSheet.create({
         color: "black",
         
     },
-    boxCity: {
+    boxGame: {
         width: "90%",
-        borderRadius: 15,
-        height: 450,
+        height: 525,
         marginVertical: "3%",
-    },
-    boxCities:{
-        backgroundColor: "green",
-        alignItems: "center",
-        justifyContent: "center",
-        height: 450,
+        backgroundColor:'#d4d1d560',
         borderRadius: 50,
-        
     },
     place: {
-        color: "black",
-        fontSize: 20,
+        color: "white",
+        fontSize: 30,
         fontWeight: "600",
-        fontFamily:"ZenLoop_400Regular",
         textAlign: "center",
         padding: 20,
-        // backgroundColor: "white",
     },
     noResultsContainer: {
         marginTop: "5%",
@@ -188,10 +235,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         width: 300,
         height: 300,
-        backgroundColor:"white",
     },
     noResults: {
-        color: "black",
+        color: "#fff",
         fontSize: 18,
         fontWeight: "500",
         padding: "2%",
@@ -210,7 +256,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     fetchGames: gamesActions.fetchGames,
-    filterGames: gamesActions.filterGames
+    filterGames: gamesActions.filterGames,
+    addToShop: gamesActions.addToShop
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Games)
