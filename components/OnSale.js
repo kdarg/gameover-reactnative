@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Button } from 'react-native-elements'
 
 const OnSale = (props) => {
-    console.log(props)
+    // console.log(props)
     // const [games, setGames] = useState([])
     const gameList = ['Monster Hunter: World', 'Hades', 'Mario Party Superstars', 'Mortal Kombat 11']
 
