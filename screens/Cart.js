@@ -42,6 +42,8 @@ const Cart = (props) =>{
                 <Text style={{color:'#fff'}}>Total:</Text>
                 <Text style={{color:'#fff'}}>{total}</Text>
 
+                <Button title='CHECKOUT WITH PAYPAL' onPress={() => props.navigation.navigate('Paypal')} />
+
             </View>
 
 

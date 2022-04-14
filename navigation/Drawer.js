@@ -1,7 +1,7 @@
 
 import React, {useState, useEffect } from "react";
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList  } from '@react-navigation/drawer';
-import { StackHome, StackGames, StackSignUp,StackLogIn,StackAboutUs, StackCart} from './Stack';
+import { StackHome, StackGames, StackSignUp,StackLogIn,StackAboutUs, StackCart, StackPaypal} from './Stack';
 import { connect } from 'react-redux';
 import { Image } from 'react-native'
 import {StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, ToastAndroid} from "react-native";
@@ -87,6 +87,8 @@ return (
         <Drawer.Screen name="About us" component={StackAboutUs} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
 
         <Drawer.Screen name="Cart" component={StackCart} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
+
+        <Drawer.Screen name="Paypal" component={StackPaypal} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
 
         <Drawer.Screen name="Log in" component={StackLogIn} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
         <Drawer.Screen name="Sign up" component={StackSignUp} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>

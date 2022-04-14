@@ -7,6 +7,7 @@ import LogIn from '../screens/LogIn'
 import AboutUs from '../screens/AboutUs'
 import SignUp from '../screens/SignUp'
 import Cart from '../screens/Cart'
+import Paypal from '../screens/Paypal'
 
 const Stack = createNativeStackNavigator()
 
@@ -54,6 +55,14 @@ export const StackCart = () => {
     return( 
         <Stack.Navigator screenOptions={{headerShown:false}}>
             <Stack.Screen name='stackCart' component={Cart}/>
+        </Stack.Navigator>
+    )
+}
+
+export const StackPaypal = () => {
+    return( 
+        <Stack.Navigator screenOptions={{headerShown:false}}>
+            <Stack.Screen name='stackPaypal' component={Paypal}/>
         </Stack.Navigator>
     )
 }
