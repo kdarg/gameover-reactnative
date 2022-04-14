@@ -12,7 +12,7 @@ function App() {
         purchase_units: [
             {
                 amount: {
-                    value: price,
+                    value: price.toFixed(2),
                 },
             },
         ],

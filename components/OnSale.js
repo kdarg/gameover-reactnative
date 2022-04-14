@@ -45,7 +45,7 @@ const OnSale = (props) => {
                     return(
                         <View style={styles.eachcontainer} key={game._id}>
 
-                        <Image source={{uri:`https://game-over-shop.herokuapp.com/assets/gamesImages/${game.src}`}} style={styles.gameimage}/>
+                        <Image source={{uri:`https://game-over-shop.herokuapp.com/assets/gamesImages/${game.src}`}} style={styles.gameimage} />
 
                         <Text style={styles.gamenamestyle}>{game.gameName}</Text>
                         <View style={styles.boxprice}>
@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         // justifyContent: "center",
         height: 70,
-        marginBottom: 30,
     },
     pricestyles:{
         fontSize: 40,
@@ -124,6 +123,7 @@ const styles = StyleSheet.create({
         
     },
     mapContainer: {
+	marginTop:70,
         justifyContent: "center",
         alignItems: "center",
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground, ScrollView, Image } from 'react-native'
 import Footer from '../components/Footer';
 import gamesActions from '../redux/actions/gamesActions';
 import { connect } from "react-redux";
@@ -7,7 +7,6 @@ import { useEffect, useState } from "react"
 import { Button } from 'react-native-elements'
 
 const Cart = (props) =>{
-    console.log('holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     console.log(props.inShopGames)
     
     const [total, setTotal] = useState(0)
@@ -18,7 +17,6 @@ const Cart = (props) =>{
             props.inShopGames.map((game) => {
                 iterator += game.price;
             });
-            console.log('chauuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu')
             console.log(iterator)
             setTotal(iterator);
         }
@@ -31,16 +29,19 @@ const Cart = (props) =>{
 
                     return(
 
-                        <View  key={game._id}>
+                        <View key={game._id} style={styles.gameContainer}>
+			    <Image style={styles.image} source={{uri:`https://game-over-shop.herokuapp.com/assets/gamesImages/${game.src}`}}></Image>
                             <Text style={{color:'#fff'}}>{game.gameName}</Text>
-                            <Text style={{color:'#fff'}}>{game.price}</Text>
+                            <Text style={{color:'#fff'}}>$ {game.price} USD</Text>
                             <Button title="DELETE" buttonStyle={styles.addtocart} onPress={() => props.deleteFromShop(game)}/>
                         </View>
                     )
 
                 })}
-                <Text style={{color:'#fff'}}>Total:</Text>
-                <Text style={{color:'#fff'}}>{total}</Text>
+		<View style={styles.total}>
+                <Text style={{color:'#000', fontSize:18}}>TOTAL:</Text>
+                <Text style={{color:'#000', fontSize:18}}>$ {total.toFixed(2)} USD</Text>
+		</View>
 
                 <Button title='CHECKOUT WITH PAYPAL' onPress={() => props.navigation.navigate('Paypal')} />
 
@@ -66,6 +67,28 @@ const styles = StyleSheet.create({
         borderColor: "#fff",
         borderWidth: 1,
         marginTop:15,
+    },
+
+    gameContainer:{
+	    display:'flex',
+	    justifyContent:'center',
+	    alignItems:'center',
+	    marginBottom:30
+    },
+
+    image:{
+	    width:'90%',
+	    height:250,
+	    borderRadius:30
+    },
+
+    total:{
+	    display:'flex',
+	    justifyContent:'center',
+	    alignItems:'center',
+	    backgroundColor:'white',
+        marginHorizontal:100,
+        marginBottom:30,
     }
 })
 

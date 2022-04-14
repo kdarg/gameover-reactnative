@@ -90,12 +90,9 @@ return (
 
         <Drawer.Screen name="Paypal" component={StackPaypal} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
 
-        <Drawer.Screen name="Log in" component={StackLogIn} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
-        <Drawer.Screen name="Sign up" component={StackSignUp} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
+        {!token && <Drawer.Screen name="Log in" component={StackLogIn} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></>}}/>}
 
-        {/* {!token && <Drawer.Screen name="Log in" component={StackLogIn} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></>}}/>}
-
-        {!token && <Drawer.Screen name="Sign up" component={StackSignUp} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></>}}/>} */}
+        {!token && <Drawer.Screen name="Sign up" component={StackSignUp} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></>}}/>} 
 
     </Drawer.Navigator>
 
