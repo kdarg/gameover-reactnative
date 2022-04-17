@@ -12,7 +12,7 @@ function App() {
         purchase_units: [
             {
                 amount: {
-                    value: price.toFixed(2),
+                    value: Number(price).toFixed(2),
                 },
             },
         ],
@@ -21,8 +21,6 @@ function App() {
 
   const onPayPalApprove = (data, actions) => {
     return actions.order.capture().then((details) => {
-        // const name = details.payer.name.given_name;
-        // alert(`Transaction completed by ${name}`);
         window.ReactNativeWebView.postMessage(JSON.stringify({success: true, name: details.payer.name.given_name}))
     });
   }
@@ -30,8 +28,11 @@ function App() {
   return (
     <div className="paypal-content">
       <PayPalScriptProvider options={{ "client-id": "AVwC9go19k3v-1HU5T8wUDa-qS6TmP6_nH7RAesdYWv4_KURqO9gD7j9vX7Bp-BzLdSZnYhd8Qv-tOZT", currency: "USD" }}>
+            <div className='paypal'>
           <h3>Click the PayPal button below to proceed with checkout.</h3>
+          
           <PayPalButtons style={{ layout: "horizontal", tagline: false }} createOrder={onPayPalCreateOrder} onApprove={onPayPalApprove} />
+          </div>
       </PayPalScriptProvider>
     </div>
   );

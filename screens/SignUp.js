@@ -20,8 +20,6 @@ const SignUp = (props) =>{
         }else{
             try{
                 let response = await props.signUpUser(userData)
-                // console.log('holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
-                // console.log(response)
 
                 if(response.data.success){
                     props.navigation.navigate('Log in')

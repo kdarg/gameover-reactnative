@@ -7,10 +7,10 @@ const AboutUs = () =>{
     const image = { uri: "https://user-images.githubusercontent.com/91817152/163213332-abb446f0-0a2a-4484-b57c-a188df1d6c55.jpg" };
     return(
         <ScrollView >
-              <ImageBackground  source={image} style={styles.popular}>
+            <ImageBackground  source={image} style={styles.popular}>
             <View style={styles.containerAbout}>
                 <ImageBackground  style={styles.image}>
-               <View style={styles.containerTittle}>
+            <View style={styles.containerTittle}>
             <Text style={{color:'#6C0B36',marginTop:2,}}>WE CARE ABOUT GAMES</Text>
             <Text style={{color:'white', textAlign: "center", marginTop:3}}>GAME OVER is a digital distribution platform with a curated selection of games, a "you buy it, you own it" philosophy, and utmost care about customers.</Text>
             </View>     

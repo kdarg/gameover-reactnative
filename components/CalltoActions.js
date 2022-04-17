@@ -2,12 +2,12 @@ import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 import { Button } from 'react-native-elements'
 
-const CalltoActions = () => {
+const CalltoActions = (props) => {
     return(
 
             <View style={styles.calltoactions}>
                 <Image style={styles.hero} source={require('../assets/calltoactions.png')} resizeMode="contain"/>
-                <Button title="CHECK GAMES" buttonStyle={styles.checkgames} onPress={() => props.navigation.navigate('GamesDetails')}/>
+                <Button title="CHECK GAMES" buttonStyle={styles.checkgames} onPress={() => props.navigation.navigate('Games')}/>
             </View>
     )
 }
