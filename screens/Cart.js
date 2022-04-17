@@ -22,8 +22,10 @@ const Cart = (props) =>{
         }
     },[props.inShopGames])
 
+    const image = { uri: "https://user-images.githubusercontent.com/91817152/163213332-abb446f0-0a2a-4484-b57c-a188df1d6c55.jpg" };
     return(
         <ScrollView style={{backgroundColor:'#1f1f24'}}>
+            <ImageBackground  source={image} style={styles.popular}>
             <View>
                 {props.inShopGames?.map((game) => {
 
@@ -51,6 +53,7 @@ const Cart = (props) =>{
 
 
             <Footer/>
+            </ImageBackground>
         </ScrollView>
     )
 }
@@ -80,6 +83,10 @@ const styles = StyleSheet.create({
 	    width:'90%',
 	    height:250,
 	    borderRadius:30
+    },
+    popular:{
+        width:"100%",
+        height:"100%",
     },
 
     total:{

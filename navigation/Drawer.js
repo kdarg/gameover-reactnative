@@ -88,7 +88,7 @@ return (
 
         <Drawer.Screen name="Cart" component={StackCart} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
 
-        <Drawer.Screen name="Paypal" component={StackPaypal} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
+        <Drawer.Screen name="Paypal" component={StackPaypal} options={{drawerItemStyle: { height: 0 }, headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></> } }/>
 
         {!token && <Drawer.Screen name="Log in" component={StackLogIn} options={{ headerRight: (props) => <Logo {...props}/> , headerTitle: () => <></>}}/>}
 

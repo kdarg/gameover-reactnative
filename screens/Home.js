@@ -7,14 +7,14 @@ import Footer from '../components/Footer';
 import CalltoActions from '../components/CalltoActions';
 
 ComingSoon
-const Home = () =>{
+const Home = (props) =>{
 
     const image = { uri: "https://user-images.githubusercontent.com/91817152/163213332-abb446f0-0a2a-4484-b57c-a188df1d6c55.jpg" };
 
     return(
         <ScrollView> 
         <ImageBackground  source={image} style={styles.popular}>
-            <CalltoActions/>
+            <CalltoActions navigation={props.navigation}/>
             <MyCarousel/>
             <OnSale/>
             <ComingSoon/>

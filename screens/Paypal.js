@@ -24,17 +24,8 @@ const Paypal = (props) => {
   const onWebviewMessage = (event) => {
     const result = JSON.parse(event.nativeEvent.data)
     if(result.success && result.name) {
-        
 
-        // Alert.alert(
-        //     "Success",
-        //     `Transaction completed by ${result.name}`,
-        //     [
-        //       { text: "OK" }
-        //     ]
-        // );
-
-        ToastAndroid.showWithGravityAndOffset('"Transaction completed!', ToastAndroid.SHORT, ToastAndroid.CENTER, 25,50)
+        ToastAndroid.showWithGravityAndOffset('Transaction completed!', ToastAndroid.SHORT, ToastAndroid.CENTER, 25,50)
         props.navigation.navigate("Home")
 
     }
@@ -61,7 +52,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-	    // games:state.gamesReducer.games,
 	    inShopGames:state.gamesReducer.inShopGames
     }
 }
