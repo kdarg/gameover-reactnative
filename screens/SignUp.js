@@ -12,15 +12,16 @@ const SignUp = (props) =>{
 
     const countries = ["Argentina", "Canada", "Colombia","Croatia", "Finland", "France", "Germany", "Iceland", "Italy","Japan", "Norway", "Poland", "Russia", "Slovensko", "Switzerland", "Uruguay", "USA"]
 
-    const [userData, setUserData] = useState({ firstname: '', lastname: '',  country: '', urlimage: 'gameover', email: '', password: '',  })
+    const [userData, setUserData] = useState({ firstname: '', lastname: '',  country: '', urlimage: 'gameover', email: '', password: '', from: 'app' })
 
     const signUpForm = async () => {
+        console.log(userData)
         if (userData.firstname === '' || userData.lastname ==='' || userData.email === '' || userData.password === '', userData.urlimage === '', userData.country === '') {
             ToastAndroid.showWithGravityAndOffset('You must fill all the fields!', ToastAndroid.SHORT, ToastAndroid.CENTER, 25, 50)
         }else{
             try{
                 let response = await props.signUpUser(userData)
-
+                console.log(response.data)
                 if(response.data.success){
                     props.navigation.navigate('Log in')
                     ToastAndroid.showWithGravityAndOffset('Thanks for signing up, you can now login!', ToastAndroid.LONG, ToastAndroid.CENTER, 25, 50)
